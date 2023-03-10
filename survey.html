@@ -32,12 +32,12 @@
           <div class="ps-lg-1">
             <div class="d-flex align-items-center justify-content-between">
               <p class="mb-0 font-weight-medium me-3 buy-now-text">Free 24/7 customer support, updates, and more with this template!</p>
-              <a href="https://www.bootstrapdash.com/product/star-admin-pro/?utm_source=organic&utm_medium=banner&utm_campaign=buynow_demo" target="_blank" class="btn btn-xs btn-xs me-2 buy-now-btn border-0">Get Pro</a>
+              <a href="https://www.bootstrapdash.com/product/star-admin-pro/?utm_source=organic&utm_medium=banner&utm_campaign=buynow_demo" target="_blank" class="btn btn-xs me-2 buy-now-btn border-0">Get Pro</a>
             </div>
           </div>
           <div class="d-flex align-items-center justify-content-between">
             <a href="https://www.bootstrapdash.com/product/star-admin-pro/"><i class="mdi mdi-home me-3 text-white"></i></a>
-            <button id="bannerClose" class="btn btn-xs btn-xs border-0 p-0">
+            <button id="bannerClose" class="btn btn-xs border-0 p-0">
               <i class="mdi mdi-close text-white me-0"></i>
             </button>
           </div>
@@ -335,8 +335,8 @@
             </a>
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="user.html">User</a></li>
-                <li class="nav-item"> <a class="nav-link active" href="employee.html">Employee</a></li>
+                <li class="nav-item"> <a class="nav-link active" href="user.html">User</a></li>
+                <li class="nav-item"> <a class="nav-link" href="employee.html">Employee</a></li>
                 <li class="nav-item"> <a class="nav-link" href="question.html">Question</a></li>
                 <!-- <li class="nav-item"> <a class="nav-link" href="#">Group Question</a></li> -->
                 <!-- <li class="nav-item"> <a class="nav-link" href="#">Scheduler</a></li> -->
@@ -372,109 +372,85 @@
             <div class="col-lg-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Data Employee</h4>
-                  <p class="card-description">
-                    <button type="button" class="btn btn-xs btn-xs btn-success mb-3" data-toggle="modal" data-target="#exampleModal">
-                      <i class="mdi mdi-plus"></i> Tambah Employee
-                    </button>
-                  </p>
                   <div class="table-responsive">
                     <table class="table table-striped">
                       <thead>
                         <tr>
                           <th>No</th>
-                          <th>Nama</th>
-                          <th>Jabatan</th>
-                          <th>Divisi</th>
-                          <th>Lama Kerja</th>
-                          <th>Alamat</th>
+                          <th>Survey Name</th>
+                          <th>Info</th>
+                          <th>Total Question</th>
+                          <th>Date Created</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>1</td>
-                          <td>John Doe</td>
-                          <td>Manager</td>
-                          <td>Keuangan</td>
-                          <td>5 Tahun</td>
-                          <td>Jl. Sudirman No. 123</td>
+                          <td>Customer Satisfaction Survey</td>
+                          <td>Measure customer satisfaction levels</td>
+                          <td>10</td>
+                          <td>2022-05-10</td>
                           <td>
-                            <button class="btn btn-xs btn-primary btn-sm">
+                            <button data-toggle="modal" data-target="#assignSurveyModal" type="button" class="btn btn-xs btn-success">
+                              <i class="mdi mdi-clipboard-account-outline"></i>
+                            </button>
+                            <button type="button" class="btn btn-xs btn-primary">
+                              <i class="mdi mdi-eye"></i>
+                            </button>
+                            <button type="button" class="btn btn-xs btn-success">
                               <i class="mdi mdi-pencil"></i>
                             </button>
-                            <button class="btn btn-xs btn-danger btn-sm">
+                            <button type="button" class="btn btn-xs btn-danger">
                               <i class="mdi mdi-delete"></i>
                             </button>
                           </td>
                         </tr>
                         <tr>
                           <td>2</td>
-                          <td>Jane Smith</td>
-                          <td>Supervisor</td>
-                          <td>IT</td>
-                          <td>3 Tahun</td>
-                          <td>Jl. Thamrin No. 456</td>
+                          <td>Employee Engagement Survey</td>
+                          <td>Measure employee engagement levels</td>
+                          <td>20</td>
+                          <td>2022-06-15</td>
                           <td>
-                            <button class="btn btn-xs btn-primary btn-sm">
+                            <button data-toggle="modal" data-target="#assignSurveyModal" type="button" class="btn btn-xs btn-success">
+                              <i class="mdi mdi-clipboard-account-outline"></i>
+                            </button>
+                            <button type="button" class="btn btn-xs btn-primary">
+                              <i class="mdi mdi-eye"></i>
+                            </button>
+                            <button type="button" class="btn btn-xs btn-success">
                               <i class="mdi mdi-pencil"></i>
                             </button>
-                            <button class="btn btn-xs btn-danger btn-sm">
+                            <button type="button" class="btn btn-xs btn-danger">
                               <i class="mdi mdi-delete"></i>
                             </button>
                           </td>
                         </tr>
                         <tr>
                           <td>3</td>
-                          <td>Bob Johnson</td>
-                          <td>Staff</td>
-                          <td>Marketing</td>
-                          <td>2 Tahun</td>
-                          <td>Jl. Gatot Subroto No. 789</td>
+                          <td>Product Feedback Survey</td>
+                          <td>Collect feedback on product features</td>
+                          <td>15</td>
+                          <td>2022-07-20</td>
                           <td>
-                            <button class="btn btn-xs btn-primary btn-sm">
+                            <button data-toggle="modal" data-target="#assignSurveyModal" type="button" class="btn btn-xs btn-success">
+                              <i class="mdi mdi-clipboard-account-outline"></i>
+                            </button>
+                            <button type="button" class="btn btn-xs btn-primary">
+                              <i class="mdi mdi-eye"></i>
+                            </button>
+                            <button type="button" class="btn btn-xs btn-success">
                               <i class="mdi mdi-pencil"></i>
                             </button>
-                            <button class="btn btn-xs btn-danger btn-sm">
-                              <i class="mdi mdi-delete"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>4</td>
-                          <td>Alice Lee</td>
-                          <td>Staff</td>
-                          <td>Operasional</td>
-                          <td>1 Tahun</td>
-                          <td>Jl. Veteran No. 1011</td>
-                          <td>
-                            <button class="btn btn-xs btn-primary btn-sm">
-                              <i class="mdi mdi-pencil"></i>
-                            </button>
-                            <button class="btn btn-xs btn-danger btn-sm">
-                              <i class="mdi mdi-delete"></i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>5</td>
-                          <td>David Wong</td>
-                          <td>Staff</td>
-                          <td>Produksi</td>
-                          <td>6 Bulan</td>
-                          <td>Jl. Diponegoro No. 1213</td>
-                          <td>
-                            <button class="btn btn-xs btn-primary btn-sm">
-                              <i class="mdi mdi-pencil"></i>
-                            </button>
-                            <button class="btn btn-xs btn-danger btn-sm">
+                            <button type="button" class="btn btn-xs btn-danger">
                               <i class="mdi mdi-delete"></i>
                             </button>
                           </td>
                         </tr>
                       </tbody>
                     </table>
-                  </div>      
+                  </div>                  
                 </div>
               </div>
             </div>
@@ -483,15 +459,11 @@
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <!-- Modal Add User =========================================================== -->
-        <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="tambahUserModal" tabindex="-1" aria-labelledby="tambahUserModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tambah Employee</h5>
+                <h5 class="modal-title" id="tambahUserModalLabel">Tambah User</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -500,23 +472,18 @@
                 <form>
                   <div class="form-group">
                     <label for="nama">Nama</label>
-                    <input type="text" class="form-control" id="nama" placeholder="Masukkan Nama">
+                    <input type="text" class="form-control" id="nama" placeholder="Masukkan nama">
                   </div>
                   <div class="form-group">
-                    <label for="jabatan">Jabatan</label>
-                    <input type="text" class="form-control" id="jabatan" placeholder="Masukkan Jabatan">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Masukkan email">
                   </div>
                   <div class="form-group">
-                    <label for="divisi">Divisi</label>
-                    <input type="text" class="form-control" id="divisi" placeholder="Masukkan Divisi">
-                  </div>
-                  <div class="form-group">
-                    <label for="lama_kerja">Lama Kerja</label>
-                    <input type="text" class="form-control" id="lama_kerja" placeholder="Masukkan Lama Kerja">
-                  </div>
-                  <div class="form-group">
-                    <label for="alamat">Alamat</label>
-                    <textarea class="form-control" id="alamat" rows="3"></textarea>
+                    <label for="role">Role</label>
+                    <select class="form-control" id="role">
+                      <option value="Admin">Admin</option>
+                      <option value="User">User</option>
+                    </select>
                   </div>
                 </form>
               </div>
@@ -528,6 +495,58 @@
           </div>
         </div>
 
+        <div class="modal fade" id="assignSurveyModal" tabindex="-1" role="dialog" aria-labelledby="assignSurveyModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="assignSurveyModalLabel">Assign Survey to Employee</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="surveySelect">Select Survey</label>
+                  <select class="form-control" id="surveySelect">
+                    <option>Customer Satisfaction Survey</option>
+                    <option>Employee Engagement Survey</option>
+                    <option>Product Feedback Survey</option>
+                  </select>
+                </div>
+                <table class="table table-bordered table-hover">
+                  <thead>
+                    <tr>
+                      <th>Employee ID</th>
+                      <th>Employee Name</th>
+                      <th>Assign</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1001</td>
+                      <td>John Doe</td>
+                      <td><input type="checkbox" name="assign[]" value="1001"></td>
+                    </tr>
+                    <tr>
+                      <td>1002</td>
+                      <td>Jane Smith</td>
+                      <td><input type="checkbox" name="assign[]" value="1002"></td>
+                    </tr>
+                    <tr>
+                      <td>1003</td>
+                      <td>Mark Johnson</td>
+                      <td><input type="checkbox" name="assign[]" value="1003"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary">Assign</button>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- End Modal Add User -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
