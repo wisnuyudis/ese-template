@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Chat
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+    </script>
+    <style>
+      body {
+        background-color: #F0F0F0;
+      }
+      .chat-container {
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        box-shadow: 0px 2px 5px #BDBDBD;
+        height: 500px;
+        overflow-y: scroll;
+        padding: 20px;
+      }
+      .chat-box {
+        margin-bottom: 20px;
+      }
+      .chat-box .chat-text {
+        background-color: #F0F0F0;
+        border-radius: 20px;
+        padding: 10px 20px;
+        display: inline-block;
+        max-width: 70%;
+      }
+      .chat-box .chat-time {
+        font-size: 12px;
+        margin-left: 10px;
+      }
+      .chat-box .chat-img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      .chat-box .chat-name {
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      .form-container {
+        background-color: #FFFFFF;
+        border-radius: 10px;
+        box-shadow: 0px 2px 5px #BDBDBD;
+        padding: 20px;
+        margin-top: 20px;
+      }
+      .form-container .form-control {
+        border-radius: 20px;
+      }
+      .form-container .btn-send {
+        background-color: #1890FF;
+        color: #FFFFFF;
+        border-radius: 20px;
+        padding: 10px 20px;
+        margin-top: 10px;
+      }
+      .form-container .btn-send:hover {
+        background-color: #0D47A1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="chat-container">
+                    <div class="chat-box">
+                        <img class="chat-img" src="https://www.w3schools.com/w3images/avatar2.png">
+                        <div>
+                            <div class="chat-name">Bot</div>
+                            <div class="chat-text">Halo, karyawan! Kami ingin memberitahukan bahwa ada survey yang harus Anda kerjakan. Silakan selesaikan survey tersebut secepat mungkin untuk membantu kami meningkatkan kualitas perusahaan.</div>
+                            <div class="chat-time">10:32 AM</div>
+                        </div>
+                    </div>
+                    <!-- <div class="chat-box">
+                        <img class="chat-img" src="https://www.w3schools.com/w3images/avatar3.png">
+                        <div>
+                            <div class="chat-name">Jane Smith</div>
+                            <div class="chat-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+                            <div class="chat-time">10:35 AM</div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="form-container">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Type your message..." id="message-input">
+                    </div>
+                    <button type="submit" class="btn btn-send" id="send-button">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <!-- sebelum tag </body> -->
+    <!-- sebelum tag </body> -->
+<script>
+    const messageInput = document.getElementById('message-input');
+    const sendButton = document.getElementById('send-button');
+    const chatContainer = document.querySelector('.chat-container');
+    let lastMessage = null;
+
+    sendButton.addEventListener('click', function () {
+        const message = messageInput.value.trim();
+        if (message === '') return;
+
+        const chatBox = document.createElement('div');
+        chatBox.className = 'chat-box';
+        chatBox.innerHTML = `
+            <img class="chat-img" src="https://www.w3schools.com/w3images/avatar4.png">
+            <div>
+                <div class="chat-name">You</div>
+                <div class="chat-text">${message}</div>
+                <div class="chat-time">${getTime()}</div>
+            </div>
+        `;
+
+        if (lastMessage !== null && lastMessage.classList.contains('bot-box')) {
+            const options = lastMessage.querySelector('.bot-options');
+            const selectedOption = options.querySelector('.selected');
+            if (selectedOption !== null) {
+                const chatBox = document.createElement('div');
+                chatBox.className = 'chat-box';
+                chatBox.innerHTML = `
+                    <img class="chat-img" src="https://www.w3schools.com/w3images/avatar2.png">
+                    <div>
+                        <div class="chat-name">Bot</div>
+                        <div class="chat-text">${selectedOption.textContent}</div>
+                        <div class="chat-time">${getTime()}</div>
+                    </div>
+                `;
+                chatContainer.appendChild(chatBox);
+                options.remove();
+            }
+            
+        }
+
+        chatContainer.appendChild(chatBox);
+        messageInput.value = '';
+        messageInput.focus();
+        lastMessage = chatBox;
+    addBotMessage('Bagaimana perasaan kamu setelah bekerja di PT Bintang Toejoe selama 4 tahun?', ['Senang', 'Seru', 'Bosan']);
+
+    });
+
+    chatContainer.addEventListener('click', function (event) {
+        const target = event.target;
+        if (target.classList.contains('bot-option')) {
+            const options = target.closest('.bot-options');
+            const selectedOption = options.querySelector('.selected');
+            if (selectedOption !== null) {
+                selectedOption.classList.remove('selected');
+            }
+            target.classList.add('selected');
+        }
+    });
+
+    function getTime() {
+        const now = new Date();
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        return `${hours}:${minutes}`;
+    }
+
+    function addBotMessage(text, options) {
+        const chatBox = document.createElement('div');
+        chatBox.className = 'chat-box bot-box';
+        chatBox.innerHTML = `
+            <img class="chat-img" src="https://www.w3schools.com/w3images/avatar2.png">
+            <div>
+                <div class="chat-name">Bot</div>
+                <div class="chat-text">${text}</div>
+                <div class="chat-time">${getTime()}</div>
+            </div>
+        `;
+        if (options !== null && options.length > 0) {
+            const optionsContainer = document.createElement('div');
+            optionsContainer.className = 'bot-options';
+            for (let option of options) {
+                const optionButton = document.createElement('button');
+                optionButton.className = 'bot-option btn btn-primary';
+                optionButton.textContent = option;
+                optionsContainer.appendChild(optionButton);
+            }
+            chatBox.appendChild(optionsContainer);
+        }
+        chatContainer.appendChild(chatBox);
+        lastMessage = chatBox;
+    }
+
+</script>
+
+
+  </body>
+</html>

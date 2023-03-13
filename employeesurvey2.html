@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Experience Survey
+    </title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h4>Experience Survey
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form id="survey-form">
+                            <div class="form-group">
+                                <label for="name">Name
+                                </label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email
+                                </label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rating">How would you rate your overall experience?
+                                </label>
+                                <select class="form-control" id="rating" name="rating" required>
+                                    <option value="">Select an option
+                                    </option>
+                                    <option value="5">Excellent
+                                    </option>
+                                    <option value="4">Good
+                                    </option>
+                                    <option value="3">Average
+                                    </option>
+                                    <option value="2">Poor
+                                    </option>
+                                    <option value="1">Very poor
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="feedback">What did you like and dislike about your experience?
+                                </label>
+                                <textarea class="form-control" id="feedback" name="feedback" rows="5" required>
+                  </textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact">Do you want us to contact you regarding your feedback?
+                                </label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="contact" id="contactYes"
+                                        value="yes" required>
+                                    <label class="form-check-label" for="contactYes">Yes
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="contact" id="contactNo"
+                                        value="no">
+                                    <label class="form-check-label" for="contactNo">No
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h4>Chatbot
+                        </h4>
+                    </div>
+                    <div class="card-body" id="chatbot">
+                        <p>Hello! How can I assist you today?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js">
+    </script>
+    <!-- Custom JS -->
+    <script>
+        $(document).ready(function () {
+            // Initialize variables
+            var $form = $('#survey-form');
+            var $chatbot = $('#chatbot');
+            var $feedback = $('#feedback');
+            var $contactYes = $('#contactYes');
+            var $contactNo = $('#contactNo');
+            var feedbackSubmitted = false;
+            // Submit form
+            $form.on('submit', function (e) {
+                e.preventDefault();
+                // Validate form
+                if ($form[0].checkValidity()) {
+                    // Send feedback to server
+                    $.ajax({
+                        url: 'submit-feedback.php',
+                        type: 'post',
+                        data: $form.serialize(),
+                        success: function (data) {
+                            feedbackSubmitted = true;
+                            // Display thank you message
+                            $feedback.prop('disabled', true);
+                            $contactYes.prop('disabled', true);
+                            $contactNo.prop('disabled', true);
+                            $form.find(':submit').prop('disabled', true);
+                            $form.prepend(
+                                '<div class="alert alert-success mt-3">Thank you for your feedback!</div>'
+                                );
+                        },
+                        error: function () {
+                            alert(
+                                'An error occurred while submitting your feedback. Please try again later.');
+                        }
+                    });
+                }
+            });
+            // Chatbot
+            $chatbot.on('click', function () {
+                if (!feedbackSubmitted) {
+                    var message = prompt('What can I assist you with?');
+                    if (message) {
+                        $chatbot.append('<p><strong>You:</strong> ' + message + '</p>');
+                        // Send message to server
+                        $.ajax({
+                            url: 'send-message.php',
+                            type: 'post',
+                            data: {
+                                message: message
+                            },
+                            success: function (data) {
+                                $chatbot.append('<p><strong>Chatbot:</strong> ' + data +
+                                    '</p>');
+                            },
+                            error: function () {
+                                alert(
+                                    'An error occurred while sending your message. Please try again later.');
+                            }
+                        });
+                    }
+                } else {
+                    alert('You have already submitted your feedback. Thank you!');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
