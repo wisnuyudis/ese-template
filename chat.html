@@ -68,12 +68,22 @@
       .form-container .btn-send:hover {
         background-color: #0D47A1;
       }
+
+      .self-box {
+        margin-left: auto;
+        /* background-color: #007bff; */
+        /* color: #fff; */
+    }
+
+    .self-box img {
+        order: -1;
+    }
     </style>
   </head>
   <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-8 offset-md-2">
+            <div class="col-md-8 offset-md-2 mt-3">
                 <div class="chat-container">
                     <div class="chat-box">
                         <img class="chat-img" src="https://www.w3schools.com/w3images/avatar2.png">
@@ -115,7 +125,7 @@
         if (message === '') return;
 
         const chatBox = document.createElement('div');
-        chatBox.className = 'chat-box';
+        chatBox.className = 'chat-box self-box';
         chatBox.innerHTML = `
             <img class="chat-img" src="https://www.w3schools.com/w3images/avatar4.png">
             <div>
@@ -149,7 +159,7 @@
         messageInput.value = '';
         messageInput.focus();
         lastMessage = chatBox;
-    addBotMessage('Bagaimana perasaan kamu setelah bekerja di PT Bintang Toejoe selama 4 tahun?', ['Senang', 'Seru', 'Bosan']);
+        addBotMessage('Bagaimana perasaan kamu setelah bekerja di PT Bintang Toejoe selama 4 tahun?', ['Senang', 'Seru', 'Bosan']);
 
     });
 
